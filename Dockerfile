@@ -1,7 +1,7 @@
-FROM emscripten/emsdk:2.0.11 as build
+FROM emscripten/emsdk:2.0.18 as build
 
-ARG FFMPEG_VERSION=4.3.1
-ARG X264_VERSION=20170226-2245-stable
+ARG FFMPEG_VERSION=4.4
+ARG X264_VERSION=20191217-2245-stable
 
 ARG PREFIX=/opt/ffmpeg
 ARG MAKEFLAGS="-j4"
@@ -18,9 +18,10 @@ RUN cd /tmp/x264-snapshot-${X264_VERSION} && \
   --prefix=${PREFIX} \
   --host=i686-gnu \
   --enable-static \
+  --disable-thread \
   --disable-cli \
   --disable-asm \
-  --extra-cflags="-s USE_PTHREADS=1"
+  --extra-cflags="-s USE_PTHREADS=0"
 
 RUN cd /tmp/x264-snapshot-${X264_VERSION} && \
   emmake make && emmake make install 
@@ -30,7 +31,7 @@ RUN cd /tmp/ && \
   wget http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
   tar zxf ffmpeg-${FFMPEG_VERSION}.tar.gz && rm ffmpeg-${FFMPEG_VERSION}.tar.gz
 
-ARG CFLAGS="-s USE_PTHREADS=1 -O3 -I${PREFIX}/include"
+ARG CFLAGS="-s USE_PTHREADS=0 -O3 -I${PREFIX}/include"
 ARG LDFLAGS="$CFLAGS -L${PREFIX}/lib -s INITIAL_MEMORY=33554432"
 
 # Compile ffmpeg.

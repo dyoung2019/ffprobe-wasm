@@ -1,9 +1,31 @@
 # `FFProbe Wasm`
 > A Web-based FFProbe. Powered by FFmpeg, Vue and Web Assembly!
 
-https://alfg.github.io/ffprobe-wasm/
+## With **multi-threading disabled** fork
 
-⚠️ ️Compatible with Chrome and Edge only due to limited support for [SharedArrayBuffer](https://caniuse.com/sharedarraybuffer) and the [required CORS headers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) for Firefox on Github Pages.
+### __No pthreads__ therefore should be compatible with all(more) browsers.
+
+~~⚠️ ️Compatible with Chrome and Edge only due to limited support for [SharedArrayBuffer](https://caniuse.com/sharedarraybuffer) and the [required CORS headers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) for Firefox on Github Pages.~~
+
+## Prebuilt files
+
+- dist/ffprobe-wasm.js
+- dist/ffprobe-wasm.wasm
+- dist/ffprobe-wasm.worker.js
+
+### TL;DNR Setup
+
+```bash
+git clone https://github.com/dyoung2019/ffprobe-wasm.git
+docker build ffprobe-wasm/
+cd ffprobe-wasm/
+docker-compose run ffprobe-wasm make
+```
+
+### Credits 
+- emscripten docker image 2.0.18
+- ffmpeg 4.4
+- x264 version 20191217-2245-stable
 
 ## Development
 `ffprobe-wasm` uses [emscripten](https://emscripten.org/) to compile [FFmpeg](https://ffmpeg.org)'s [libav](https://ffmpeg.org/doxygen/4.1/index.html) to [Web Assembly](https://webassembly.org/) via [Docker](https://www.docker.com/).
