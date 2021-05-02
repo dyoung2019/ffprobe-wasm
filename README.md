@@ -7,11 +7,20 @@
 
 ~~⚠️ ️Compatible with Chrome and Edge only due to limited support for [SharedArrayBuffer](https://caniuse.com/sharedarraybuffer) and the [required CORS headers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) for Firefox on Github Pages.~~
 
-## Prebuilt files
+## Library files (v0.5.0)
 
-- dist/ffprobe-wasm.js
-- dist/ffprobe-wasm.wasm
-- dist/ffprobe-wasm.worker.js
+- no pthreads 
+  - ffprobe.js
+  - ffprobe.wasm
+
+- legacy
+  - ffprobe-wasm.js
+  - ffprobe-wasm.wasm
+  - ffprobe-wasm.worker.js
+
+- no pthreads / es6 module
+  - ffprobe-es6.mjs
+  - ffprobe-es6.wasm
 
 ### TL;DNR Setup
 

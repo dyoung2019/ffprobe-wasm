@@ -21,7 +21,7 @@ RUN cd /tmp/x264-snapshot-${X264_VERSION} && \
   --disable-thread \
   --disable-cli \
   --disable-asm \
-  --extra-cflags="-s USE_PTHREADS=0"
+  --extra-cflags=""
 
 RUN cd /tmp/x264-snapshot-${X264_VERSION} && \
   emmake make && emmake make install 
@@ -31,7 +31,7 @@ RUN cd /tmp/ && \
   wget http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
   tar zxf ffmpeg-${FFMPEG_VERSION}.tar.gz && rm ffmpeg-${FFMPEG_VERSION}.tar.gz
 
-ARG CFLAGS="-s USE_PTHREADS=0 -O3 -I${PREFIX}/include"
+ARG CFLAGS="-O3 -I${PREFIX}/include"
 ARG LDFLAGS="$CFLAGS -L${PREFIX}/lib -s INITIAL_MEMORY=33554432"
 
 # Compile ffmpeg.
